@@ -1,4 +1,20 @@
 ;; ============================================================
+;; Catch-all: Inline Directives (lowest priority)
+;; @include @includeIf @includeWhen @includeUnless @includeFirst
+;; @extends @yield @method @inject @each @vite @livewire
+;; @aware @servers @import @js @svg @props @use @stack
+;; @asset @json @script @thumbnail @extract @set
+;; @wireUiScripts (with params)
+;; + any custom directives matching @[a-zA-Z]+
+;;
+;; NOTE: This must come BEFORE all specific directive rules.
+;; Tree-sitter gives later patterns higher priority, so
+;; specific rules below will override this catch-all.
+;; ============================================================
+
+(directive) @function.call
+
+;; ============================================================
 ;; HTML
 ;; ============================================================
 
@@ -30,9 +46,14 @@
 ;; @csrf @parent @inertia @inertiaHead @viteReactRefresh
 ;; @livewireStyles @livewireScripts @livewireScriptConfig
 ;; @routes @permalink @title @content @excerpt @wireUiScripts
+;;
+;; (keyword) wraps a single (directive) child — we capture
+;; the inner directive so this later pattern overrides the
+;; catch-all above.
 ;; ============================================================
 
-(keyword) @constant
+(keyword
+  (directive) @constant)
 
 ;; ============================================================
 ;; Conditionals — open/close
@@ -165,18 +186,6 @@
 
 (attribute
   (directive) @attribute)
-
-;; ============================================================
-;; Inline Directives — bare (directive) at document level
-;; @include @includeIf @includeWhen @includeUnless @includeFirst
-;; @extends @yield @method @inject @each @vite @livewire
-;; @aware @servers @import @js @svg @props @use @stack
-;; @asset @json @script @thumbnail @extract @set
-;; @field @options (ACF) @wireUiScripts (with params)
-;; + any custom directives matching @[a-zA-Z]+
-;; ============================================================
-
-(directive) @function.call
 
 ;; ============================================================
 ;; Parameters (inside directive parentheses)

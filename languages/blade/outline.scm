@@ -2,40 +2,38 @@
 ;; Blade Sections — show section name from parameter
 ;; ============================================================
 
+;; Block section: @section('sidebar') ... @endsection
 (section
   (directive_start) @_start
   (parameter) @name
-  (#gsub! @name "^['\"](.+)['\"]$" "%1"))
-(section) @item
+  (#gsub! @name "^['\"](.+)['\"]$" "%1")) @item
 
-;; Section with inline value: @section('title', 'Default')
+;; Inline section: @section('title', 'Default')
 (section
-  (directive) @name)
-(section) @item
+  (directive) @_directive
+  (parameter) @name
+  (#gsub! @name "^['\"](.+)['\"]$" "%1")) @item
 
 ;; ============================================================
 ;; Blade Conditionals — show @if, @auth, @can etc.
 ;; ============================================================
 
 (conditional
-  (directive_start) @name)
-(conditional) @item
+  (directive_start) @name) @item
 
 ;; ============================================================
 ;; Blade Loops — show @foreach, @for, @forelse, @while
 ;; ============================================================
 
 (loop
-  (directive_start) @name)
-(loop) @item
+  (directive_start) @name) @item
 
 ;; ============================================================
 ;; Blade Switch
 ;; ============================================================
 
 (switch
-  (directive_start) @name)
-(switch) @item
+  (directive_start) @name) @item
 
 ;; ============================================================
 ;; Blade Stacks — @push, @pushOnce, @pushIf, @prepend, @prependOnce
@@ -44,24 +42,20 @@
 (stack
   (directive_start) @_start
   (parameter) @name
-  (#gsub! @name "^['\"](.+)['\"]$" "%1"))
-(stack) @item
+  (#gsub! @name "^['\"](.+)['\"]$" "%1")) @item
 
 ;; ============================================================
 ;; Blade Once, Fragment, Verbatim
 ;; ============================================================
 
 (once
-  (directive_start) @name)
-(once) @item
+  (directive_start) @name) @item
 
 (fragment
-  (directive_start) @name)
-(fragment) @item
+  (directive_start) @name) @item
 
 (verbatim
-  (directive_start) @name)
-(verbatim) @item
+  (directive_start) @name) @item
 
 ;; ============================================================
 ;; PHP Blocks — @php ... @endphp
@@ -76,16 +70,14 @@
 ;; ============================================================
 
 (envoy
-  (directive_start) @name)
-(envoy) @item
+  (directive_start) @name) @item
 
 ;; ============================================================
 ;; Livewire Blocks
 ;; ============================================================
 
 (livewire
-  (directive_start) @name)
-(livewire) @item
+  (directive_start) @name) @item
 
 ;; ============================================================
 ;; HTML Elements
