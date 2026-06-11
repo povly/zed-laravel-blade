@@ -176,7 +176,7 @@
 ;; + any custom directives matching @[a-zA-Z]+
 ;; ============================================================
 
-(document (directive) @function.call)
+(directive) @function.call
 
 ;; ============================================================
 ;; Parameters (inside directive parentheses)
