@@ -51,10 +51,12 @@ Optionally, create `.bladeformatterrc.json` in your project root to configure fo
 
 ```json
 {
-  "indent-size": 2,
-  "wrap-line-length": 120
+  "indentSize": 2,
+  "wrapLineLength": 120
 }
 ```
+
+> **Note:** Config keys must be **camelCase** (e.g. `indentSize`), not kebab-case. The CLI flags use `--indent-size`, but the JSON config file uses `indentSize`.
 
 ## Grammar
 
