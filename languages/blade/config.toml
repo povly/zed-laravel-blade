@@ -3,7 +3,7 @@ grammar = "blade"
 path_suffixes = ["blade.php"]
 block_comment = ["{{-- ", " --}}"]
 autoclose_before = ";:.,=}])>"
-word_characters = ["-"]
+word_characters = ["-", "@"]
 brackets = [
     { start = "{", end = "}", close = true, newline = true },
     { start = "[", end = "]", close = true, newline = true },
@@ -21,8 +21,6 @@ brackets = [
 ]
 wrap_characters = { start_prefix = "<", start_suffix = ">", end_prefix = "</", end_suffix = ">" }
 scope_opt_in_language_servers = ["tailwindcss-language-server"]
-prettier_plugins = ["@shufo/prettier-plugin-blade"]
-prettier_parser_name = "blade"
 
 [jsx_tag_auto_close]
 open_tag_node_name = "start_tag"

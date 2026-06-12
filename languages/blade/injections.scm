@@ -5,6 +5,12 @@
     (#set! injection.include-children)
     (#set! injection.language "php_only"))
 
+; Envoy body text — inject as bash for @task/@story blocks
+((text) @injection.content
+    (#has-ancestor? @injection.content "envoy")
+    (#set! injection.combined)
+    (#set! injection.language "bash"))
+
 ; Livewire attributes
 ; <div wire:click="baz++">
 (attribute
